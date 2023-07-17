@@ -1,0 +1,64 @@
+
+
+   <form [formGroup]="novedadesForm" (ngSubmit)="submitForm()">
+    <div>
+      <label for="id">ID:</label>
+      <input type="number" id="id" formControlName="id" required>
+    </div>
+    <div>
+      <label for="fechaInicio">Fecha de Inicio:</label>
+      <select id="fechaInicio" formControlName="fechaInicio" (change)="concatenateDates()">
+        <option value="">Selecciona un día</option>
+        <option value="L">Lunes</option>
+        <option value="M">Martes</option>
+        <option value="K">Miércoles</option>
+        <option value="J">Jueves</option>
+        <option value="V">Viernes</option>
+        <option value="S">Sábado</option>
+        <option value="D">Domingo</option>
+      </select>
+    </div>
+    <div>
+      <label for="fechaFin">Fecha de Fin:</label>
+      <select id="fechaFin" formControlName="fechaFin" (change)="concatenateDates()">
+        <option value="">Selecciona un día</option>
+        <option value="L">Lunes</option>
+        <option value="M">Martes</option>
+        <option value="K">Miércoles</option>
+        <option value="J">Jueves</option>
+        <option value="V">Viernes</option>
+        <option value="S">Sábado</option>
+        <option value="D">Domingo</option>
+      </select>
+    </div>
+    <div>
+      <label for="descripcion">Descripción:</label>
+      <input type="text" id="descripcion" formControlName="descripcion" [value]="descripcionValue" readonly>
+    </div>
+    <button type="submit" [disabled]="novedadesForm.invalid">Enviar</button>
+  </form>
+
+
+
+
+
+  <div class="table-responsive">
+    <table datatable [dtOptions]="dtOptions" class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data">
+          <td>{{ item.id }}</td>
+          <td>{{ item.nombre }}</td>
+          <td>{{ item.descripcion }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  
